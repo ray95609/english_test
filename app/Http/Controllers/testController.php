@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use DateTime;
 use Carbon\Carbon;
+use GuzzleHttp\Client;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
 
@@ -259,6 +260,126 @@ class testController extends Controller
         ];
 
         return view('english_test.php_Carbon',['result'=>$result]);
+
+    }
+
+    //考題11: Laravel API串接
+    public function Laravel_API(){
+        Session::forget('success');
+        Session::forget('info');
+        return view('english_test.index_Laravel_API');
+
+    }
+    //取得JSON DATA
+
+    public function guzzle_data(){
+        $client=new Client();
+        $response=$client->get('https://jsonplaceholder.typicode.com/users');
+        if($response!=null){
+        $deresponse=json_decode($response->getBody()->getContents(),true);
+
+        return $deresponse;
+        }
+
+    }
+
+    public function ListData(){
+
+        $deresponse=$this->guzzle_data();
+
+        $idArray=[];
+        $usernameArray=[];
+        $nameArray=[];
+        $cityArray=[];
+        $emailArray=[];
+
+        foreach ($deresponse as $key => $value){
+            $id=$deresponse[$key]['id'];
+            $idArray[]=$id;
+            $userName=$deresponse[$key]['username'];
+            $usernameArray[]=$userName;
+            $name=$deresponse[$key]['name'];
+            $nameArray[]=$name;
+            $city=$deresponse[$key]['address']['city'];
+            $cityArray[]=$city;
+            $email=$deresponse[$key]['email'];
+            $emailArray[]=$email;
+
+        }
+        $showDataArray=[
+            'id'=>$idArray,
+            'username'=>$usernameArray,
+            'name'=>$nameArray,
+            'city'=>$cityArray,
+            'email'=>$emailArray,
+        ];
+        return $showDataArray;
+
+    }
+
+    public function parse(){
+
+
+
+    }
+
+    public function guzzle(){
+
+//            $return=['code'=>'success'];
+//
+//            $client=new Client();
+//            $response=$client->get('https://jsonplaceholder.typicode.com/users');
+//            $deresponse=json_decode($response->getBody()->getContents(),true);
+//            if($deresponse){
+//
+//                return response()->json($return);
+//
+//            }
+        Session::forget('success');
+
+
+            $deresponse=$this->guzzle_data();
+            Session::put('success','獲取資料成功');
+
+            $showDataArray=$this->ListData();
+
+            return view('english_test.index_Laravel_API',
+                ['deresponse'=>$deresponse,
+                 'showDataArray'=>$showDataArray]);
+
+    }
+
+    public function detail($id){
+
+
+        Session::forget('info');
+
+        $guzzle_data=$this->guzzle_data();
+        $deresponse=$this->guzzle_data();
+        $showDataArray=$this->ListData();
+
+
+        $firstName=explode(' ',$guzzle_data[$id]['name'])[0];
+        $lastName=explode(' ',$guzzle_data[$id]['name'])[1];
+        $company=$guzzle_data[$id]['company']['name'];
+        $phone=$guzzle_data[$id]['phone'];
+
+
+        Session::put('info','info資料獲取成功');
+
+        $guzzleDataArray=[
+            'firstName'=>$firstName,
+            'lastName'=>$lastName,
+            'company'=>$company,
+            'phone'=>$phone,
+        ];
+
+        //dd($guzzleDataArray);
+        return view('english_test.index_Laravel_API',
+            ['guzzleData'=>$guzzle_data,
+             'guzzleDataArray'=>$guzzleDataArray,
+             'deresponse'=>$deresponse,
+             'showDataArray'=>$showDataArray]);
 
     }
 

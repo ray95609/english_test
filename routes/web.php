@@ -46,7 +46,10 @@ Route::group(['prefix'=>'english_test'],function (){
    Route::post('array_searching','testController@array_searching')->name('english_test.array_searching');
     //考題10: Laravel Carbon時間套件應用
    Route::get('Carbon','testController@Carbon')->name('english_test.Carbon');
-
+    //考題11: Laravel API串接
+    Route::get('index_Laravel_API','testController@Laravel_API')->name('english_test.Laravel_API');
+    Route::get('index_Laravel_API/guzzle','testController@guzzle')->name('english_test.guzzle');
+    Route::get('index_Laravel_API/detail/{id}}','testController@detail')->name('english_test.detail');
 });
 
 
