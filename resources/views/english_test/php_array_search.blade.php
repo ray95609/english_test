@@ -13,10 +13,12 @@
         <span>請輸入搜尋條件:</span>
         <input type="text" name="keyword" required>
         <button type="submit" class="btn btn-success">送出</button>
+        <br>
+        <span>Try: A03KA028</span>
         <br><br>
         @if(Session::has('success'))
         <span>搜尋結果:</span>
-        <textarea readonly rows="1" style="width: 50%;height: 300px;">
+        <textarea readonly rows="1" style="width: 50%;height: 100px;">
            @foreach($result as $key =>$value) {{$value}}@endforeach
         </textarea>
         @endif
