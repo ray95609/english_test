@@ -22,7 +22,7 @@
         .main{
             margin: auto;
             width: 600px;
-            height: 400px;
+            height: 600px;
             box-shadow: gray 10px 10px 10px;
             border-radius: 20px;
 

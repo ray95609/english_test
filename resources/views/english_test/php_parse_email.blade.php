@@ -3,6 +3,11 @@
 @section('content')
 
     <div class="container">
+        @if(Session::has('fail'))
+            <div class="alert alert-info" role="alert">
+                <strong>請輸入正確email格式</strong>
+            </div>
+        @endif
         <form action="{{route('english_test.string_explode')}}" method="POST">
            @csrf
             <span>請輸入E-mail:</span>

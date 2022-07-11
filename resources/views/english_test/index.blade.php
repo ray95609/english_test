@@ -22,8 +22,20 @@
             <td><a href="{{route('english_test.datetime')}}">做時間加減運算</a></td>
         </tr>
         <tr class="text-center" style="cursor: pointer">
+            <td>4</td>
+            <td><a href="{{route('english_test.linux_Cron')}}">請解釋底下這兩行Cron 指令所代表的意思?</a></td>
+        </tr>
+        <tr class="text-center" style="cursor: pointer">
             <td>5</td>
             <td><a href="{{route('english_test.string')}}">拆解Email取出@前的字串</a></td>
+        </tr>
+        <tr class="text-center" style="cursor: pointer">
+            <td>6</td>
+            <td><a href="{{route('english_test.number')}}">PHP Number數字應用</a></td>
+        </tr>
+        <tr class="text-center" style="cursor: pointer">
+            <td>7</td>
+            <td><a href="{{route('english.SQL')}}">SQL資料庫操作</a></td>
         </tr>
 
 

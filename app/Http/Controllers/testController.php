@@ -2,9 +2,11 @@
 
 namespace App\Http\Controllers;
 
+use DateTime;
 use Carbon\Carbon;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Session;
+
 
 class testController extends Controller
 {
@@ -40,8 +42,8 @@ class testController extends Controller
 
    public function session(){
 
-      $time=Carbon::now();
-
+      $time=new DateTime('now');
+      $time=$time->format('Y-m-d H:i:s');
       //set session lifetime
       //也可以在config->session.php->lifetime中設定
       //'lifetime' => env('SESSION_LIFETIME', 180),
@@ -54,10 +56,14 @@ class testController extends Controller
    }
 
    public function datetime(){
-        $now=Carbon::now();
-        $tomorrow=$now->addDay()->format('Y-m-d');
-        $nextMonth=$now->addMonth()->format('Y-m-d');
-        $nextYear=$now->addYear()->format('Y-m-d');
+        $now=new DateTime('now');
+        $now=$now->format('Y-m-d');
+        $tomorrow=new DateTime('+1 day');
+        $tomorrow=$tomorrow->format('Y-m-d');
+        $nextMonth=new DateTime('+1 month');
+        $nextMonth=$nextMonth->format('Y-m-d');
+        $nextYear=new DateTime('+1 year');
+        $nextYear=$nextYear->format('Y-m-d');
 
         //設定時區
         //也可以到config->app.php->timezone中設定
@@ -77,6 +83,12 @@ class testController extends Controller
         return view('english_test.php_datetime',['timeArray'=>$timeArray]);
    }
 
+   public function linux_Cron(){
+
+        return view('english_test.php_Linux_Cron');
+
+   }
+
     public function string(){
 
         Session::forget('success');
@@ -90,15 +102,60 @@ class testController extends Controller
         Session::forget('success');
 
         if($request!=null){
-
+        $patten="/^([a-zA-Z0-9\.]+@+[a-zA-Z]+(\.)+[a-zA-Z]{2,3})$/";
         $email=$request->input('email');
-        $email=explode("@",$email);
-        $email=$email[0];
+            if(preg_match($patten,$email)){
 
-        Session::put('success','獲取email成功');
+                $email=explode("@",$email);
+                $email=$email[0];
 
-        return view('english_test.php_parse_email',['email'=>$email]);
+                Session::put('success','獲取email成功');
+
+                return view('english_test.php_parse_email',['email'=>$email]);
+            }else{
+               return redirect()->route('english_test.string')->with('fail','輸入非email');
+                }
+        }else{
+            return redirect()->route('english_test.string')->with('fail','輸入非email');
         }
+    }
+
+
+    public function number(){
+
+        Session::forget('success');
+
+        return view('english_test.php_number');
+
+    }
+
+    public function numberFormat(Request $request){
+
+        if($request!=null){
+            $number=$request->input('number');
+
+            if(is_numeric($number)){
+                $roundNumber=round($number);
+                $thousandthsNumber=number_format($number);
+
+                Session::put('success','轉換成功');
+
+                return view('english_test.php_number',['roundNumber'=>$roundNumber,'thousandthsNumber'=>$thousandthsNumber]);
+            }else{
+                return redirect()->route('english_test.number')->with('fail','僅能輸入數字');
+            }
+
+        }else{
+            return redirect()->route('english_test.number')->with('fail','無輸入任何資料');
+        }
+
+
+    }
+
+    public function SQL(){
+
+        return view('english_test.php_SQL');
+
     }
 
 
