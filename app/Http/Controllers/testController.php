@@ -17,7 +17,7 @@ class testController extends Controller
 
     }
 
-
+    //考題1: 使用PHP程式請將變數拆解成Array
    public function array(){
 
        $string_src="BSA01,BSA02,BSA03,BSA04,BSA05,BSA06,BSA07";
@@ -40,6 +40,7 @@ class testController extends Controller
 
    }
 
+   //考題2: 使用PHP程式完成下列要求：目的是呈現對於session瞭解及運用
    public function session(){
 
       $time=new DateTime('now');
@@ -55,6 +56,7 @@ class testController extends Controller
 
    }
 
+   //考題3: 延續考題2, 做時間加減運算
    public function datetime(){
         $now=new DateTime('now');
         $now=$now->format('Y-m-d');
@@ -83,12 +85,16 @@ class testController extends Controller
         return view('english_test.php_datetime',['timeArray'=>$timeArray]);
    }
 
+
+   //考題4: 請解釋底下這兩行Cron 指令所代表的意思?
    public function linux_Cron(){
 
         return view('english_test.php_Linux_Cron');
 
    }
 
+
+   //考題5: 拆解Email取出@前的字串
     public function string(){
 
         Session::forget('success');
@@ -120,7 +126,7 @@ class testController extends Controller
         }
     }
 
-
+    //考題6: PHP Number數字應用
     public function number(){
 
         Session::forget('success');
@@ -151,12 +157,111 @@ class testController extends Controller
 
 
     }
-
+    //考題7:  SQL資料庫操作
     public function SQL(){
 
         return view('english_test.php_SQL');
 
     }
+
+    //考題8: JSON應用
+    public function JSON(){
+
+        Session::forget('success');
+
+        return view('english_test.php_json');
+
+    }
+
+    public function JSON_decode(Request $request){
+
+            if($request!=null){
+                $json=$request->input('json_data');
+                $json=json_decode($json,true);
+
+                $erpkey=$json['DATA']['erpkey'];
+
+                Session::put('success','轉換成功');
+                return view('english_test.php_json',['erpkey'=>$erpkey]);
+
+            }else{
+                return redirect()->route('english_test.JSON')->with('fail','未取得任何資料');
+
+            }
+
+    }
+    //考題9: PHP Array搜尋應用
+    public function array_search(){
+        Session::forget('success');
+        Session::forget('fail');
+        return view('english_test.php_array_search');
+
+    }
+
+    public function array_searching(Request $request){
+        Session::forget('success');
+        Session::forget('fail');
+        if($request!=null){
+
+            $dbData=[
+                "A01KA029","A02KA032", "A03KA028","A01KA029001",
+                "A01KA029002", "A01KA029003", "A01KA029004", "A01KA029005",
+                "A02KA032001", "A02KA032002","A02KA032003", "A02KA032004",
+                "A02KA032005", "A03KA028001","A03KA028002", "A03KA028003",
+                "A03KA028004", "A03KA028005"
+            ];
+
+            $keyword=$request->input('keyword');
+
+            $result='查無結果';
+
+            if(in_array($keyword,$dbData)){
+//                $key=array_search($keyword,$dbData);
+//                $result=$dbData[$key];
+
+                $result=array();
+                foreach ($dbData as $key=>$value){
+                    if(strstr($value,$keyword)==true){
+                        array_push($result,$value);
+                    }
+                }
+
+                Session::put('success','找到囉');
+
+                return view('english_test.php_array_search',['result'=>$result]);
+            }else{
+                Session::put('fail','無搜尋內容');
+                return view('english_test.php_array_search',['result'=>$result]);
+            }
+
+        }else{
+            return redirect()->route('english_test.array_search')->with('fail','無搜尋內容');
+
+        }
+
+    }
+
+    //考題10: Laravel Carbon時間套件應用
+    public function Carbon(){
+
+        $now=Carbon::now();
+        $add14Month=$now->addMonth('14');
+        $add14Month_year=$add14Month->format('Y');
+        $add14Month_month=$add14Month->format('m');
+        $add14Month_day=$add14Month->format('d');
+
+        $result=[
+            '現在'=>$now,
+            '14個月後'=>$add14Month,
+            '14個月後-年'=>$add14Month_year,
+            '14個月後-月'=>$add14Month_month,
+            '14個月後-日'=>$add14Month_day
+        ];
+
+        return view('english_test.php_Carbon',['result'=>$result]);
+
+    }
+
 
 
 }

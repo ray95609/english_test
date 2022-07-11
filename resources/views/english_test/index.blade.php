@@ -35,9 +35,20 @@
         </tr>
         <tr class="text-center" style="cursor: pointer">
             <td>7</td>
-            <td><a href="{{route('english.SQL')}}">SQL資料庫操作</a></td>
+            <td><a href="{{route('english_test.SQL')}}">SQL資料庫操作</a></td>
         </tr>
-
+        <tr class="text-center" style="cursor: pointer">
+            <td>8</td>
+            <td><a href="{{route('english_test.JSON')}}">JSON應用</a></td>
+        </tr>
+        <tr class="text-center" style="cursor: pointer">
+            <td>9</td>
+            <td><a href="{{route('english_test.array_search')}}"> PHP Array搜尋應用</a></td>
+        </tr>
+        <tr class="text-center" style="cursor: pointer">
+            <td>10</td>
+            <td><a href="{{route('english_test.Carbon')}}"> 考題10: Laravel Carbon時間套件應用</a></td>
+        </tr>
 
     </table>
 
