@@ -45,7 +45,7 @@ class TestApiExampleController extends Controller
      */
     public function TestApiGetUserData(): JsonResponse
     {
-        Session::forget('UserData');
+//        Session::forget('UserData');
         //檢查session 是否存過此資料，一般不會用 session 會使用 redis 做cache，暫時使用
         $sortUserData  = Session::get('UserData');
         if(!$sortUserData){
