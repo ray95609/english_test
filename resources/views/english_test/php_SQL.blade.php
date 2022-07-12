@@ -7,11 +7,11 @@
         <p>B. 請下SQL語法模糊比對 Store_Name欄位中有“台北”字眼的 資料列</p>
 
 
-        <p>A-  SELECT SUM( Sales) AS SUM_Sales<br>
+        <p>A- SELECT SUM( Sales) AS SUM_Sales<br>
             FROM store_information;
         </p>
 
-        <p>B-  SELECT Store_Name,Sales,TXN_Date<br>
+        <p>B- SELECT Store_Name,Sales,TXN_Date<br>
             FROM store_information<br>
             WHERE Store_Name LIKE "%台北%";
         </p>

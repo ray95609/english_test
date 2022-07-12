@@ -4,14 +4,14 @@
 @section('content')
 
 
-    <table  class="table table-hover">
+    <table class="table table-hover">
         <tr class="text-center">
             <th>題號</th>
             <th>題目</th>
         </tr>
-        <tr  class="text-center" style="cursor: pointer">
+        <tr class="text-center" style="cursor: pointer">
             <td>1</td>
-            <td ><a href="{{route('english_test.array')}}">使用PHP程式請將變數拆解成Array</a></td>
+            <td><a href="{{route('english_test.array')}}">使用PHP程式請將變數拆解成Array</a></td>
         </tr>
         <tr class="text-center" style="cursor: pointer">
             <td>2</td>

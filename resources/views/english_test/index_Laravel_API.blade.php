@@ -14,7 +14,8 @@
         #app {
             padding-top: 1rem;
         }
-        .main{
+
+        .main {
             margin: auto;
             width: 800px;
             height: inherit;
@@ -32,11 +33,11 @@
         <hr>
 
         <div class="text-center">
-           <a href="{{route('english_test.guzzle')}}">
-               <button type="button" class="btn btn-primary fetch"
-                       data-url="{{route('english_test.guzzle')}}">Fetch
-               </button>
-           </a>
+            <a href="{{route('english_test.guzzle')}}">
+                <button type="button" class="btn btn-primary fetch"
+                        data-url="{{route('english_test.guzzle')}}">Fetch
+                </button>
+            </a>
             <button type="button" class="btn btn-warning">Parse</button>
         </div>
 
@@ -61,19 +62,19 @@
 
         @if(Session::has('info'))
             <h2 class="h5 text-black-50">User Info</h2>
-        <dl class="row">
-            <!-- This is an example -->
-            <dt class="col-sm-3">First Name</dt>
-            <dd class="col-sm-9">{{$guzzleDataArray['firstName']}}</dd>
-            <dt class="col-sm-3">Last Name</dt>
-            <dd class="col-sm-9">{{$guzzleDataArray['lastName']}}</dd>
-            <dt class="col-sm-3">Company</dt>
-            <dd class="col-sm-9">{{$guzzleDataArray['company']}}</dd>
-            <dt class="col-sm-3">Phone</dt>
-            <dd class="col-sm-9">{{$guzzleDataArray['phone']}}
-                <span style="color:red;"></span>
-            </dd>
-        </dl>
+            <dl class="row">
+                <!-- This is an example -->
+                <dt class="col-sm-3">First Name</dt>
+                <dd class="col-sm-9">{{$guzzleDataArray['firstName']}}</dd>
+                <dt class="col-sm-3">Last Name</dt>
+                <dd class="col-sm-9">{{$guzzleDataArray['lastName']}}</dd>
+                <dt class="col-sm-3">Company</dt>
+                <dd class="col-sm-9">{{$guzzleDataArray['company']}}</dd>
+                <dt class="col-sm-3">Phone</dt>
+                <dd class="col-sm-9">{{$guzzleDataArray['phone']}}
+                    <span style="color:red;"></span>
+                </dd>
+            </dl>
         @endif
         <hr>
 
@@ -109,26 +110,26 @@
             @endif
             @if(Session::has('success'))
                 @for($i=0;$i<count($deresponse);$i++)
-            <tbody>
-            <!-- This is an example -->
-            <tr>
-                <input type="hidden" name="id" value="{{$showDataArray['id'][$i]}}">
-                <td>{{$showDataArray['username'][$i]}}</td>
-                <td>{{$showDataArray['name'][$i]}}</td>
-                <td>{{$showDataArray['city'][$i]}}</td>
-                <td>
-                    <a href="#">{{$showDataArray['email'][$i]}}</a>
-                </td>
-                <td>
-                    <a href="{{route('english_test.detail',['id'=>$showDataArray['id'][$i]])}}">
-                       <button type="button" class="btn btn-info btn-sm">Detail</button>
-                    </a>
-                    <button type="button" class="btn btn-danger btn-sm">Delete</button>
-                </td>
-            </tr>
+                    <tbody>
+                    <!-- This is an example -->
+                    <tr>
+                        <input type="hidden" name="id" value="{{$showDataArray['id'][$i]}}">
+                        <td>{{$showDataArray['username'][$i]}}</td>
+                        <td>{{$showDataArray['name'][$i]}}</td>
+                        <td>{{$showDataArray['city'][$i]}}</td>
+                        <td>
+                            <a href="#">{{$showDataArray['email'][$i]}}</a>
+                        </td>
+                        <td>
+                            <a href="{{route('english_test.detail',['id'=>$showDataArray['id'][$i]])}}">
+                                <button type="button" class="btn btn-info btn-sm">Detail</button>
+                            </a>
+                            <button type="button" class="btn btn-danger btn-sm">Delete</button>
+                        </td>
+                    </tr>
 
-            </tbody>
-            @endfor
+                    </tbody>
+                @endfor
             @endif
         </table>
     </div>

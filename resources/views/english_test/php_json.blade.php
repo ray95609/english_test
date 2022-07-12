@@ -22,9 +22,9 @@
     <script type="text/javascript">
 
 
-        $('.import').click(function (){
+        $('.import').click(function () {
             alert(1)
-            let json=  {
+            let json = {
                 "STATUS": 200,
                 "DATA": {
                     "ERROR": 0,
@@ -35,17 +35,13 @@
                 }
             }
             alert(2)
-            let json_str=JSON.stringify(json)
+            let json_str = JSON.stringify(json)
             $('.json_data').val(json_str);
-            let test= $('.json_data').val();
+            let test = $('.json_data').val();
 
             alert(test);
 
         })
-
-
-
-
 
 
     </script>
