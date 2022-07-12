@@ -11,6 +11,11 @@ use Illuminate\Support\Facades\Session;
 
 class testController extends Controller
 {
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 導入index
+     */
 
     public function index()
     {
@@ -18,7 +23,11 @@ class testController extends Controller
         return view('english_test.index');
 
     }
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 拆解String
+     */
     //考題1: 使用PHP程式請將變數拆解成Array
     public function array()
     {
@@ -43,6 +52,12 @@ class testController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Session運用
+     */
+
     //考題2: 使用PHP程式完成下列要求：目的是呈現對於session瞭解及運用
     public function session()
     {
@@ -59,6 +74,12 @@ class testController extends Controller
         return view('english_test.php_session', ['time' => $time, 'lifetime' => $lifetime]);
 
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * php時間函式
+     */
 
     //考題3: 延續考題2, 做時間加減運算
     public function datetime()
@@ -90,7 +111,11 @@ class testController extends Controller
         return view('english_test.php_datetime', ['timeArray' => $timeArray]);
     }
 
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Linux排程
+     */
     //考題4: 請解釋底下這兩行Cron 指令所代表的意思?
     public function linux_Cron()
     {
@@ -99,6 +124,11 @@ class testController extends Controller
 
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 自串操作
+     */
 
     //考題5: 拆解Email取出@前的字串
     public function string()
@@ -134,6 +164,12 @@ class testController extends Controller
         }
     }
 
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * 數字操作
+     */
+
     //考題6: PHP Number數字應用
     public function number()
     {
@@ -167,6 +203,12 @@ class testController extends Controller
 
 
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * SQL語法
+     */
 
     //考題7:  SQL資料庫操作
     public function SQL()
@@ -204,6 +246,12 @@ class testController extends Controller
         }
 
     }
+
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Array應用
+     */
 
     //考題9: PHP Array搜尋應用
     public function array_search()
@@ -257,7 +305,11 @@ class testController extends Controller
         }
 
     }
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     *Carbon時間套件
+     */
     //考題10: Laravel Carbon時間套件應用
     public function Carbon()
     {
@@ -279,7 +331,11 @@ class testController extends Controller
         return view('english_test.php_Carbon', ['result' => $result]);
 
     }
-
+    /**
+     * @return \Illuminate\Contracts\Foundation\Application|\Illuminate\Contracts\View\Factory|\Illuminate\View\View
+     *
+     * Ajax 與串接
+     */
     //考題11: Laravel API串接
     public function Laravel_API()
     {
