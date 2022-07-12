@@ -50,6 +50,15 @@ Route::group(['prefix'=>'english_test'],function (){
     Route::get('index_Laravel_API','testController@Laravel_API')->name('english_test.Laravel_API');
     Route::get('index_Laravel_API/guzzle','testController@guzzle')->name('english_test.guzzle');
     Route::get('index_Laravel_API/detail/{id}}','testController@detail')->name('english_test.detail');
+
+
+    //考題11: Laravel API串接 範例 : 網址後段 english_test/TestApiUserList
+    //呈現主頁面
+    Route::get('TestApiUserList','TestApiExampleController@UserList')->name('TestApiExample.UserList');
+
+    //AJAX 取得 API DATA
+    Route::get('TestApiGetUserData','TestApiExampleController@TestApiGetUserData')->name('TestApiExample.TestApiGetUserData');
+
 });
 
 
